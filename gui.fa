@@ -52,9 +52,9 @@ funcion etiqueta(texto: Texto) -> Widget {
     retornar label(texto)
 }
 
-# Etiqueta dinámica (se actualiza automáticamente cuando cambia la variable)
-funcion etiqueta_dinamica(variable: Texto) -> Widget {
-    retornar varlabel(variable)
+# Etiqueta dinámica (se actualiza automáticamente cuando cambia la var_nombre)
+funcion etiqueta_dinamica(var_nombre: Texto) -> Widget {
+    retornar varlabel(var_nombre)
 }
 
 # Botón de texto con callback
@@ -68,20 +68,20 @@ funcion boton_simple(texto: Texto, callback) -> Widget {
 }
 
 # Entrada de texto
-funcion entrada_texto(variable: Texto) -> Widget {
-    retornar input(variable)
+funcion entrada_texto(var_nombre: Texto) -> Widget {
+    retornar input(var_nombre)
 }
 
 # Entrada de texto multilínea
-funcion area_texto(variable: Texto) -> Widget {
-    retornar textarea(variable)
+funcion area_texto(var_nombre: Texto) -> Widget {
+    retornar textarea(var_nombre)
 }
 
 # ─── Widgets de datos ───
 
 # Barra de progreso
-funcion barra_progreso(variable: Texto) -> Widget {
-    retornar progress(variable)
+funcion barra_progreso(var_nombre: Texto) -> Widget {
+    retornar progress(var_nombre)
 }
 
 # Barra de progreso indeterminada (spinner de carga)
@@ -90,13 +90,13 @@ funcion cargando() -> Widget {
 }
 
 # Deslizante (slider)
-funcion deslizante(variable: Texto, minimo: Decimal, maximo: Decimal) -> Widget {
-    retornar slider(variable, minimo, maximo)
+funcion deslizante(var_nombre: Texto, minimo: Decimal, maximo: Decimal) -> Widget {
+    retornar slider(var_nombre, minimo, maximo)
 }
 
 # Casilla de verificación (checkbox)
-funcion casilla(etiqueta: Texto, variable: Texto) -> Widget {
-    retornar check(etiqueta, variable)
+funcion casilla(etiqueta: Texto, var_nombre: Texto) -> Widget {
+    retornar check(etiqueta, var_nombre)
 }
 
 # ─── Widgets de presentación ───
@@ -332,35 +332,35 @@ funcion chip_suggestion(s: Texto, cb) { retornar s }
 # ==========================================
 
 # Text Fields
-funcion campo_texto(variable: Texto, etiqueta: Texto) -> Texto { retornar variable }
-funcion campo_perfilado(variable: Texto, etiqueta: Texto) -> Texto { retornar variable }
-funcion campo_texto_error(variable: Texto, etiqueta: Texto, error: Texto) -> Texto { retornar variable }
-funcion campo_contraseña(variable: Texto, etiqueta: Texto) -> Texto { retornar variable }
-funcion campo_contrasena(variable: Texto, etiqueta: Texto) -> Texto { retornar variable }
-funcion campo_numero(variable: Texto, etiqueta: Texto, min: Decimal, max: Decimal) -> Texto { retornar variable }
-funcion campo_busqueda(variable: Texto) -> Texto { retornar variable }
-funcion campo_search(variable: Texto) -> Texto { retornar variable }
-funcion campo_email(variable: Texto, etiqueta: Texto) -> Texto { retornar variable }
-funcion campo_telefono(variable: Texto, etiqueta: Texto) -> Texto { retornar variable }
-funcion campo_url(variable: Texto, etiqueta: Texto) -> Texto { retornar variable }
+funcion campo_texto(var_nombre: Texto, etiqueta: Texto) -> Texto { retornar var_nombre }
+funcion campo_perfilado(var_nombre: Texto, etiqueta: Texto) -> Texto { retornar var_nombre }
+funcion campo_texto_error(var_nombre: Texto, etiqueta: Texto, error: Texto) -> Texto { retornar var_nombre }
+funcion campo_contraseña(var_nombre: Texto, etiqueta: Texto) -> Texto { retornar var_nombre }
+funcion campo_contrasena(var_nombre: Texto, etiqueta: Texto) -> Texto { retornar var_nombre }
+funcion campo_numero(var_nombre: Texto, etiqueta: Texto, min: Decimal, max: Decimal) -> Texto { retornar var_nombre }
+funcion campo_busqueda(var_nombre: Texto) -> Texto { retornar var_nombre }
+funcion campo_search(var_nombre: Texto) -> Texto { retornar var_nombre }
+funcion campo_email(var_nombre: Texto, etiqueta: Texto) -> Texto { retornar var_nombre }
+funcion campo_telefono(var_nombre: Texto, etiqueta: Texto) -> Texto { retornar var_nombre }
+funcion campo_url(var_nombre: Texto, etiqueta: Texto) -> Texto { retornar var_nombre }
 
 # Dropdown & Select
 funcion contraer_desplegable(opciones, seleccionada: Entero) -> Texto { retornar "" }
 funcion dropdown(opciones, seleccionada: Entero) -> Texto { retornar "" }
 funcion menu_seleccion(opciones, seleccionada: Entero, etiqueta: Texto) -> Texto { retornar "" }
 funcion select_menu(opciones, seleccionada: Entero, etiqueta: Texto) -> Texto { retornar "" }
-funcion autocompletar(opciones, variable: Texto) -> Texto { retornar variable }
-funcion autocomplete(opciones, variable: Texto) -> Texto { retornar variable }
+funcion autocompletar(opciones, var_nombre: Texto) -> Texto { retornar var_nombre }
+funcion autocomplete(opciones, var_nombre: Texto) -> Texto { retornar var_nombre }
 
 # Radio & Switch
 funcion grupo_radio(opciones, seleccion: Entero, cb) { retornar "" }
 funcion radio_group(opciones, seleccion: Entero, cb) { retornar "" }
-funcion interruptor(etiqueta: Texto, variable: Texto) -> Texto { retornar variable }
-funcion switch_widget(etiqueta: Texto, variable: Texto) -> Texto { retornar variable }
+funcion interruptor(etiqueta: Texto, var_nombre: Texto) -> Texto { retornar var_nombre }
+funcion switch_widget(etiqueta: Texto, var_nombre: Texto) -> Texto { retornar var_nombre }
 
 # Sliders
-funcion deslizante_discreto(variable: Texto, minimo: Decimal, maximo: Decimal, pasos: Entero) -> Decimal { retornar 0.0 }
-funcion discrete_slider(variable: Texto, minimo: Decimal, maximo: Decimal, pasos: Entero) -> Decimal { retornar 0.0 }
+funcion deslizante_discreto(var_nombre: Texto, minimo: Decimal, maximo: Decimal, pasos: Entero) -> Decimal { retornar 0.0 }
+funcion discrete_slider(var_nombre: Texto, minimo: Decimal, maximo: Decimal, pasos: Entero) -> Decimal { retornar 0.0 }
 funcion deslizante_rango(variable1: Texto, variable2: Texto, minimo: Decimal, maximo: Decimal) -> Decimal { retornar 0.0 }
 funcion range_slider(variable1: Texto, variable2: Texto, minimo: Decimal, maximo: Decimal) -> Decimal { retornar 0.0 }
 
@@ -369,14 +369,14 @@ funcion grupo_subconjuntos(subconjuntos, selecciones, cb) { retornar "" }
 funcion chip_group(subconjuntos, selecciones, cb) { retornar "" }
 
 # Date & Time Pickers
-funcion selector_fecha(variable: Texto) -> Texto { retornar variable }
-funcion date_picker(variable: Texto) -> Texto { retornar variable }
-funcion selector_hora(variable: Texto) -> Texto { retornar variable }
-funcion time_picker(variable: Texto) -> Texto { retornar variable }
+funcion selector_fecha(var_nombre: Texto) -> Texto { retornar var_nombre }
+funcion date_picker(var_nombre: Texto) -> Texto { retornar var_nombre }
+funcion selector_hora(var_nombre: Texto) -> Texto { retornar var_nombre }
+funcion time_picker(var_nombre: Texto) -> Texto { retornar var_nombre }
 
 # Color Picker
-funcion selector_color(variable: Texto) -> Texto { retornar variable }
-funcion color_picker(variable: Texto) -> Texto { retornar variable }
+funcion selector_color(var_nombre: Texto) -> Texto { retornar var_nombre }
+funcion color_picker(var_nombre: Texto) -> Texto { retornar var_nombre }
 
 # Helpers internos para los nuevos inputs
 funcion campo_texto_error(s: Texto, l: Texto, e: Texto) -> Texto { retornar s }
@@ -404,8 +404,8 @@ funcion tarjeta_elevada(hijo) { retornar hijo }
 funcion elevated_card(hijo) { retornar hijo }
 funcion tarjeta_perfilada(hijo) { retornar hijo }
 funcion outlined_card(hijo) { retornar hijo }
-funcion tarjeta_seleccionable(hijo, variable) { retornar hijo }
-funcion selectable_card(hijo, variable) { retornar hijo }
+funcion tarjeta_seleccionable(hijo, var_nombre) { retornar hijo }
+funcion selectable_card(hijo, var_nombre) { retornar hijo }
 
 # List Items
 funcion elemento_lista(leading, titulo: Texto, trailing) { retornar titulo }
@@ -466,7 +466,7 @@ funcion dialog_full(titulo: Texto, hijo) -> Texto { retornar titulo }
 # ─── Bottom Sheets ───
 
 # Hoja inferior estándar (sin overlay)
-# hijo: widget, visible: Texto (nombre de variable bool)
+# hijo: widget, visible: Texto (nombre de var_nombre bool)
 funcion hoja_inferior(hijo, visible: Texto) { retornar hijo }
 funcion bottom_sheet(hijo, visible: Texto) { retornar hijo }
 
@@ -541,7 +541,7 @@ funcion navigation_drawer(items, seleccion: Entero, cb) { retornar items }
 # items: tupla de item_navegacion(...)
 # seleccion: Entero
 # cb: callback
-# visible: Texto (nombre de variable booleana)
+# visible: Texto (nombre de var_nombre booleana)
 funcion cajon_modal(items, seleccion: Entero, cb, visible: Texto) { retornar items }
 funcion modal_drawer(items, seleccion: Entero, cb, visible: Texto) { retornar items }
 
@@ -577,9 +577,9 @@ funcion scrollable_tabs(tabs, seleccion: Entero, cb) { retornar "" }
 
 # ─── SearchBar (barra de búsqueda) ────────────────────────────────
 # placeholder: Texto
-# variable: Texto (nombre de variable para el texto)
-funcion barra_busqueda(placeholder: Texto, variable: Texto) -> Texto { retornar placeholder }
-funcion search_bar_widget(placeholder: Texto, variable: Texto) -> Texto { retornar placeholder }
+# var_nombre: Texto (nombre de var_nombre para el texto)
+funcion barra_busqueda(placeholder: Texto, var_nombre: Texto) -> Texto { retornar placeholder }
+funcion search_bar_widget(placeholder: Texto, var_nombre: Texto) -> Texto { retornar placeholder }
 
 # ─── NavItem (elemento de navegación) ─────────────────────────────
 # icono: Texto (emoji o icono)
@@ -591,17 +591,17 @@ funcion nav_item(icono: Texto, etiqueta: Texto) -> Texto { retornar etiqueta }
 # INDICADORES (Fase 7)
 # ==========================================
 
-# Barra de progreso lineal determinada (variable: nombre de variable con valor 0-100)
-funcion barra_progreso(variable: Texto) -> Decimal { retornar 0.0 }
-funcion progress_bar_linear(variable: Texto) -> Decimal { retornar 0.0 }
+# Barra de progreso lineal determinada (var_nombre: nombre de var_nombre con valor 0-100)
+funcion barra_progreso(var_nombre: Texto) -> Decimal { retornar 0.0 }
+funcion progress_bar_linear(var_nombre: Texto) -> Decimal { retornar 0.0 }
 
 # Barra de progreso lineal indeterminada (animación de carga)
 funcion barra_progreso_indeterminada() -> Texto { retornar "" }
 funcion progress_bar_indeterminate() -> Texto { retornar "" }
 
-# Círculo de progreso determinado (variable: nombre de variable con valor 0-100)
-funcion circulo_progreso(variable: Texto) -> Decimal { retornar 0.0 }
-funcion circular_progress(variable: Texto) -> Decimal { retornar 0.0 }
+# Círculo de progreso determinado (var_nombre: nombre de var_nombre con valor 0-100)
+funcion circulo_progreso(var_nombre: Texto) -> Decimal { retornar 0.0 }
+funcion circular_progress(var_nombre: Texto) -> Decimal { retornar 0.0 }
 
 # Círculo de progreso indeterminado (spinner)
 funcion circulo_progreso_indeterminado() -> Texto { retornar "" }
@@ -661,7 +661,7 @@ funcion avatar_group(avatares) { retornar avatares }
 
 # Transición Fade (muestra/oculta contenido con opacidad)
 # contenido: widget hijo
-# visible: nombre de variable booleana
+# visible: nombre de var_nombre booleana
 funcion transición(contenido, visible: Texto) { retornar contenido }
 funcion fade_transition(contenido, visible: Texto) { retornar contenido }
 
@@ -676,7 +676,7 @@ funcion ripple_effect(hijo) { retornar hijo }
 # Pull-to-refresh: envuelve contenido con capacidad de recargar al tirar
 # hijo: widget a envolver
 # cb: callback a ejecutar al recargar
-# refrescando (opcional): nombre de variable booleana para estado de carga
+# refrescando (opcional): nombre de var_nombre booleana para estado de carga
 funcion pull_to_refresh(hijo, cb) { retornar hijo }
 funcion pull_to_refresh(hijo, cb, refrescando: Texto) { retornar hijo }
 funcion pulltorefresh(hijo, cb) { retornar hijo }
@@ -686,7 +686,7 @@ funcion tirar_recargar(hijo, cb) { retornar hijo }
 # hijo: widget a envolver
 # cb (opcional): callback al descartar
 # etiqueta (opcional): texto para botón de deshacer
-# descartado (opcional): nombre de variable booleana para estado
+# descartado (opcional): nombre de var_nombre booleana para estado
 funcion swipe_to_dismiss(hijo) { retornar hijo }
 funcion swipe_to_dismiss(hijo, cb) { retornar hijo }
 funcion swipe_to_dismiss(hijo, cb, etiqueta: Texto) { retornar hijo }
