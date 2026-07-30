@@ -1,7 +1,7 @@
 # Módulo: gui
 # Descripción: API gráfica nativa completa con Xilem (framework UI reactivo)
 # Instalación: forja add gui && forja install
-# Uso: importar "gui"
+# Uso: importar gui
 #
 # NOTA: Este paquete solo funciona al transpilar a Rust con cargo.
 #       La VM de Forja no renderiza ventanas nativas.
@@ -144,7 +144,7 @@ funcion spacer(t: Decimal) -> Texto { retornar "" }
 # ==========================================
 # Estas funciones exponen el sistema de tema Material Design 3
 # con colores dinámicos (Monet), tipografía, formas y elevación.
-# Uso: importar "gui" y llamar a estas funciones desde main().
+# Uso: importar gui y llamar a estas funciones desde main().
 
 # ─── Tema ───
 

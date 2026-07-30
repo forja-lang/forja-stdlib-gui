@@ -7,7 +7,7 @@ Proporciona la API de widgets, layouts y temas Material You para aplicaciones de
 ## Instalación
 
 ```fa
-importar "gui"
+importar gui
 ```
 
 Requiere compilar Forja con el feature `gui`:
@@ -63,7 +63,7 @@ Estilos disponibles: `filled`, `outlined`, `rounded`, `sharp`, `twotone`.
 ## Ejemplo mínimo
 
 ```fa
-importar "gui"
+importar gui
 
 funcion main() {
     columna(
