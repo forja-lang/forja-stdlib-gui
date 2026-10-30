@@ -35,9 +35,50 @@ funcion desplazable(hijo) -> Layout {
     retornar scroll(hijo)
 }
 
-# Grid con posición
-funcion grilla(hijos..., filas: Entero, columnas: Entero) -> Layout {
-    retornar grid(hijos, filas, columnas)
+# Grid responsivo: las columnas se reparten el ancho disponible (se adapta al
+# resize) y cada fila toma la altura de su contenido (autosize).
+# hijos: arreglo de widgets. columnas: máximo de columnas. gap: separación en px.
+# En pantallas angostas baja a 2 o 1 columna automáticamente.
+funcion grilla(hijos, columnas: Entero, gap: Decimal) -> Layout {
+    retornar grid(hijos, columnas, gap)
+}
+funcion cuadricula(hijos, columnas: Entero, gap: Decimal) -> Layout {
+    retornar grid(hijos, columnas, gap)
+}
+
+# Contenedor vertical centrado horizontalmente
+funcion columna_centrada(hijos...) -> Layout {
+    retornar centered_column(hijos)
+}
+funcion centered_column(hijos...) -> Layout {
+    retornar col(hijos)
+}
+
+# Contenedor con ancho máximo (el contenido no se estira más allá de max)
+funcion contenedor(hijo, ancho_maximo: Decimal) -> Layout {
+    retornar container(hijo, ancho_maximo)
+}
+funcion container(hijo, ancho_maximo: Decimal) -> Layout {
+    retornar hijo
+}
+
+# Rota el contenido 90°
+funcion girar(hijo) -> Layout {
+    retornar rotate(hijo)
+}
+funcion rotar(hijo) -> Layout {
+    retornar rotate(hijo)
+}
+funcion rotate(hijo) -> Layout {
+    retornar hijo
+}
+
+# Zoom con gesto de pellizco (min_escala, max_escala en Decimal)
+funcion zoom_pellizco(hijo, min_escala: Decimal, max_escala: Decimal) -> Layout {
+    retornar pinch_zoom(hijo, min_escala, max_escala)
+}
+funcion pinch_zoom(hijo, min_escala: Decimal, max_escala: Decimal) -> Layout {
+    retornar hijo
 }
 
 # Caja con tamaño fijo
@@ -125,7 +166,11 @@ funcion row(s) { retornar s }
 funcion zstack(s) { retornar s }
 funcion split(a, b, d: Texto) { retornar a }
 funcion scroll(h) { retornar h }
-funcion grid(h, f: Entero, c: Entero) { retornar h }
+funcion grid(h, columnas: Entero, gap: Decimal) { retornar h }
+funcion centered_column(h) { retornar h }
+funcion container(h, ancho_maximo: Decimal) { retornar h }
+funcion rotate(h) { retornar h }
+funcion pinch_zoom(h, min_escala: Decimal, max_escala: Decimal) { retornar h }
 funcion sized(h, w: Decimal, hh: Decimal) { retornar h }
 funcion label(s: Texto) -> Texto { retornar s }
 funcion varlabel(v: Texto) -> Texto { retornar v }
@@ -151,6 +196,20 @@ funcion spacer(t: Decimal) -> Texto { retornar "" }
 # Crea un tema con un color semilla (formato hex #RRGGBB o nombre en español)
 # Ejemplo: tema_material("#FF5722", columna(...))
 funcion tema_material(color_semilla: Texto, hijo) { retornar hijo }
+
+# ─── Diseños predeterminados ───
+# Dos estilos listos para usar, cada uno en claro y oscuro.
+#
+# Fluent (Windows 11): fondos Mica, esquinas de 4-8px, acento azul Windows.
+# Liquid Glass: superficies vidriosas, esquinas muy redondeadas, acento azul iOS.
+funcion tema_fluent(hijo) { retornar hijo }
+funcion tema_windows11(hijo) { retornar hijo }
+funcion tema_fluent_oscuro(hijo) { retornar hijo }
+funcion tema_windows11_oscuro(hijo) { retornar hijo }
+funcion tema_liquid_glass(hijo) { retornar hijo }
+funcion tema_vidrio(hijo) { retornar hijo }
+funcion tema_liquid_glass_oscuro(hijo) { retornar hijo }
+funcion tema_vidrio_oscuro(hijo) { retornar hijo }
 
 # ─── Colores del tema ───
 # Aplican un color del esquema Material You al widget hijo.
@@ -582,10 +641,29 @@ funcion barra_busqueda(placeholder: Texto, var_nombre: Texto) -> Texto { retorna
 funcion search_bar_widget(placeholder: Texto, var_nombre: Texto) -> Texto { retornar placeholder }
 
 # ─── NavItem (elemento de navegación) ─────────────────────────────
-# icono: Texto (emoji o icono)
+# icono: Texto (nombre del icono Material, ej: "home")
 # etiqueta: Texto
 funcion item_navegacion(icono: Texto, etiqueta: Texto) -> Texto { retornar etiqueta }
 funcion nav_item(icono: Texto, etiqueta: Texto) -> Texto { retornar etiqueta }
+
+# ─── Navegador (navegación entre pantallas) ───────────────────────
+# pantallas: arreglo de pantalla(...)
+# var_actual: nombre de la variable que guarda el id de la pantalla actual
+# tipo: "barra" | "riel" | "cajon" | "pestañas" | "ninguno"
+# cb: callback al cambiar de pantalla (opcional)
+# animacion: "fade" | "slide" | "ninguno" (opcional)
+funcion navegador(pantallas, var_actual: Texto, tipo: Texto, cb) { retornar pantallas }
+funcion navegador(pantallas, var_actual: Texto, tipo: Texto, cb, animacion: Texto) { retornar pantallas }
+funcion navigator(pantallas, var_actual: Texto, tipo: Texto, cb) { retornar pantallas }
+funcion navigator(pantallas, var_actual: Texto, tipo: Texto, cb, animacion: Texto) { retornar pantallas }
+
+# ─── Pantalla (una pantalla dentro de navegador) ──────────────────
+# id: identificador único. titulo: título mostrado. contenido: layout raíz.
+# icono: nombre del icono Material (opcional)
+funcion pantalla(id: Texto, titulo: Texto, contenido) { retornar contenido }
+funcion pantalla(id: Texto, titulo: Texto, contenido, icono: Texto) { retornar contenido }
+funcion screen(id: Texto, titulo: Texto, contenido) { retornar contenido }
+funcion screen(id: Texto, titulo: Texto, contenido, icono: Texto) { retornar contenido }
 
 # ==========================================
 # INDICADORES (Fase 7)
@@ -819,11 +897,8 @@ funcion tema_sistema() -> Texto { retornar "system" }
 # ==========================================
 # ICONOS MATERIAL DESIGN
 # ==========================================
-# Sistema de iconos vectoriales Material Design con 100+ iconos.
-# Los iconos se renderizan como emoji con tamaño y color.
-# Cuando Xilem soporte SVG, se renderizarán los paths vectoriales reales.
 
-# Icono Material genérico (elige automáticamente el emoji según el nombre)
+# Icono Material genérico (busca el path SVG del catálogo por nombre)
 # nombre: nombre del icono en inglés o español (ej: "home", "favorite", "settings")
 # tamaño: tamaño en píxeles (Decimal, ej: 24, 32, 48)
 # color: color en hex (#RRGGBB) o nombre de role del tema ("primary", "secondary", "error")
@@ -852,3 +927,84 @@ funcion icon_sharp(nombre: Texto, tamaño: Decimal) -> Texto { retornar nombre }
 # Icono de dos tonos (estilo twotone)
 funcion icono_dos_tonos(nombre: Texto, tamaño: Decimal) -> Texto { retornar nombre }
 funcion icon_twotone(nombre: Texto, tamaño: Decimal) -> Texto { retornar nombre }
+
+# ==========================================
+# CONSTANTES DE ESTILO
+# ==========================================
+# Valores de texto que esperan las funciones de navegación y gradientes.
+
+# Tipo de navegación para navegador(...)
+funcion barra() -> Texto { retornar "barra" }
+funcion inferior() -> Texto { retornar "inferior" }
+funcion riel() -> Texto { retornar "riel" }
+funcion lateral() -> Texto { retornar "lateral" }
+funcion cajon() -> Texto { retornar "cajon" }
+
+# Animación de transición de pantallas
+funcion fade() -> Texto { retornar "fade" }
+funcion slide() -> Texto { retornar "slide" }
+
+# Dirección de gradiente
+funcion radial() -> Texto { retornar "radial" }
+funcion sweep() -> Texto { retornar "sweep" }
+
+# Estados visuales para capa_estado(...)
+funcion hover() -> Texto { retornar "hover" }
+funcion pressed() -> Texto { retornar "pressed" }
+funcion focused() -> Texto { retornar "focused" }
+funcion disabled() -> Texto { retornar "disabled" }
+
+# ==========================================
+# LISTAS DINÁMICAS Y LIENZO
+# ==========================================
+
+# Lista renderizada desde una variable arreglo.
+# var_nombre: nombre de la variable arreglo.
+# funcion_item: función que recibe un elemento y devuelve su layout.
+#   Ejemplo: funcion fila_item(e) { retornar item_lista(e["nombre"]) }
+funcion lista_dinamica(var_nombre: Texto, funcion_item) { retornar var_nombre }
+funcion dynamic_list(var_nombre: Texto, funcion_item) { retornar var_nombre }
+
+# Lienzo de dibujo libre.
+# var_comandos: nombre de la variable (texto JSON) con los comandos de dibujo.
+# ancho, alto: tamaño en px.
+funcion lienzo(var_comandos: Texto, ancho: Decimal, alto: Decimal) -> Texto { retornar var_comandos }
+funcion canvas(var_comandos: Texto, ancho: Decimal, alto: Decimal) -> Texto { retornar var_comandos }
+funcion lona(var_comandos: Texto, ancho: Decimal, alto: Decimal) -> Texto { retornar var_comandos }
+
+# ==========================================
+# ETIQUETAS CON ESTILO
+# ==========================================
+
+# Título con la escala tipográfica del tema (display/title)
+funcion titulo(texto: Texto) -> Texto { retornar texto }
+funcion etiqueta_titulo(texto: Texto) -> Texto { retornar texto }
+
+# Texto con un color explícito (hex o role del tema: "primary", "error", ...)
+funcion texto_color(texto: Texto, color: Texto) -> Texto { retornar texto }
+funcion etiqueta_color(texto: Texto, color: Texto) -> Texto { retornar texto }
+
+# Círculo de color sólido (útil como swatch / indicador)
+funcion circulo_color(color: Texto) -> Texto { retornar color }
+
+# ==========================================
+# VENTANA
+# ==========================================
+# Se declara dentro de main() y no dibuja nada: configura la ventana nativa.
+# Todos los argumentos después de `alto` son opcionales.
+#
+#   ventana("Mi app", 1200, 800)
+#   ventana("Mi app", 1200, 800, "assets/icono.png", 800, 600, verdadero, verdadero)
+#
+# - titulo: texto de la barra de título (si falta, se usa el nombre del diseño).
+# - ancho, alto: tamaño inicial en px lógicos.
+# - icono: ruta a PNG/JPG/ICO para el icono de la ventana y la barra de tareas.
+# - ancho_minimo, alto_minimo: tamaño mínimo al redimensionar.
+# - redimensionable: falso = tamaño fijo.
+# - decoraciones: falso = sin barra de título ni borde del sistema.
+funcion ventana(titulo: Texto, ancho: Decimal, alto: Decimal) { retornar "" }
+funcion ventana(titulo: Texto, ancho: Decimal, alto: Decimal, icono: Texto) { retornar "" }
+funcion ventana(titulo: Texto, ancho: Decimal, alto: Decimal, icono: Texto, ancho_minimo: Decimal, alto_minimo: Decimal) { retornar "" }
+funcion ventana(titulo: Texto, ancho: Decimal, alto: Decimal, icono: Texto, ancho_minimo: Decimal, alto_minimo: Decimal, redimensionable: Booleano) { retornar "" }
+funcion ventana(titulo: Texto, ancho: Decimal, alto: Decimal, icono: Texto, ancho_minimo: Decimal, alto_minimo: Decimal, redimensionable: Booleano, decoraciones: Booleano) { retornar "" }
+funcion configurar_ventana(titulo: Texto, ancho: Decimal, alto: Decimal) { retornar "" }
