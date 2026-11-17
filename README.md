@@ -10,10 +10,22 @@ Proporciona la API de widgets, layouts y temas Material You para aplicaciones de
 importar gui
 ```
 
-Requiere compilar Forja con el feature `gui`:
+La VM no dibuja ventanas: una app GUI se ejecuta de una de estas dos formas.
+
+**1. Runtime gráfico prebuilt** (no compila Xilem por app). `forja compilar` incrusta
+el fuente en el ejecutable y lo corre `forja-rt-gui`:
 
 ```bash
-cargo build --features gui
+cargo build -p forja-rt --release --features gui   # una sola vez
+forja compilar app.fa app.exe
+./app.exe
+```
+
+**2. Transpilando a Rust** (`destino: nativo` en `forja.yaml`): genera un proyecto
+Cargo que depende de `library/gui-rt` y lo compila (el primer build compila Xilem).
+
+```bash
+forja ejecutar app.fa     # con destino: nativo
 ```
 
 ## Módulos incluidos

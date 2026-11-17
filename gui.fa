@@ -1,11 +1,12 @@
 # Módulo: gui
 # Descripción: API gráfica nativa completa con Xilem (framework UI reactivo)
-# Instalación: forja add gui && forja install
+# Instalación: no hace falta (viene con Forja)
 # Uso: importar gui
 #
-# NOTA: Este paquete solo funciona al transpilar a Rust con cargo.
-#       La VM de Forja no renderiza ventanas nativas.
-# Dependencia Rust: xilem = "0.4"
+# NOTA: la VM de Forja no renderiza ventanas nativas. Dos formas de ejecutar:
+#   forja compilar app.fa app.exe   -> runtime prebuilt forja-rt-gui (sin Rust)
+#   destino: nativo en forja.yaml   -> transpila a Rust y compila con cargo
+# El runtime gráfico (forja-gui-rt) usa xilem.
 
 # ─── Layout ───
 
